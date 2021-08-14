@@ -13,6 +13,8 @@ import time
 
 logger = logging.getLogger()
 
+DATEFMT = "%Y%m%dT%H%M%S"
+
 
 @dataclasses.dataclass
 class Observation:
@@ -100,7 +102,7 @@ class TextFileStorage:
 
     def _format(self, obs):
         dt = datetime.datetime.fromtimestamp(obs.time, tz=self._tz)
-        fmt_dt = dt.strftime("%Y%m%dT%H%M%S")
+        fmt_dt = dt.strftime(DATEFMT)
         return "{}\t{:.1f}\t{}".format(fmt_dt, obs.temperature, obs.humidity)
 
 
