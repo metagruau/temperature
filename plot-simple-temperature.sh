@@ -18,6 +18,8 @@ set format x "%H:%M"
 set grid
 set ytics 1
 set ylabel "Temperature (C)"
+set link y2
+set y2tics 1
 
 set term svg size 768,480
 plot "$FILE1" using 1:2 with lines title "$FILE1_TITLE", \
