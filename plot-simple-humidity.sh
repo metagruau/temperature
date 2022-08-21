@@ -17,6 +17,8 @@ set timefmt "%Y%m%dT%H%M%S"
 set format x "%H:%M"
 set grid
 set ylabel "Humidity (%)"
+set link y2
+set y2tics
 
 set term svg size 768,480
 plot "$FILE1" using 1:3 with lines title "$FILE1_TITLE", \
