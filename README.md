@@ -42,7 +42,7 @@ Example to output only observations for the day of 2021-08-02:
 extract-data.py --date-min 20210802T0000 --date-max 20210803T0000 < observations.txt
 ```
 
-## plot-simple-\*.sh
+## plot-\*.sh
 
 Shell scripts to generate SVG images from observations.
 
@@ -52,4 +52,11 @@ Dependencies:
 Example to graph the last day of observations:
 ```
 plot-simple-temperature.sh inside.txt outside.txt > temperature.svg
+```
+
+Example to graph the last week of observations, where the observation data
+for the week needs to be transformed a bit first:
+```
+map-to-daily-data-set.awk < weekly-inside.txt > weekly-data-set.txt
+plot-7days-temperature.sh weekly-data-set.txt "Example label"
 ```
