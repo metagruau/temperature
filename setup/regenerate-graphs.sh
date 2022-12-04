@@ -19,7 +19,7 @@ while sleep 10m; do
     plot-simple-humidity.sh last-day-inside.txt last-day-CWQB.txt > $ROOT_WWW/last-day-humidity.svg
 
     # graph inside temperatures over the current week
-    WEEK_MIN=$(date -d 'last sunday' +%Y%m%d)
+    WEEK_MIN=$(date -d 'last saturday + 1 day' +%Y%m%d)
     WEEK_MAX=$(date -d "$WEEK_MIN + 7 days" +%Y%m%d)
     extract-data.py --date-min "${WEEK_MIN}T0000" --date-max "${WEEK_MAX}T0000" < inside.txt \
         | map-to-daily-data-set.awk > last-week-inside.txt
