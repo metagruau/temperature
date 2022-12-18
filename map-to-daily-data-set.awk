@@ -9,7 +9,7 @@ BEGIN {
 	time = substr($1, 10, 6)
 	if (cur_date != date) {
 		if (cur_date != "") {
-			# print two blank lines (gnu plot "multi-data-set" file format)
+			# print two blank lines (gnuplot "multi-data-set" file format)
 			print ""
 			print ""
 		}
