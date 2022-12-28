@@ -3,7 +3,7 @@
 Get inside and outside temperature. Store it. Make the current temperature and
 some historical data available through a very simple web page.
 
-This is a work in progress... and the name is... duh.
+This is very, very basic.
 
 ## read-temp-dht22.py
 

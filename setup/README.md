@@ -1,11 +1,18 @@
-# Current local setup
+# Current setup on my Raspberry Pi
 
-Copy and compile programs and make them available in $PATH.
+Cross-compile and copy programs and make them available in $PATH.
+
+Copy the website files:
+```
+# do NOT use --delete, since currently the dynamically generated graphs
+# and archives are also stored under the www directory
+rsync -v -rtlp www pi:./
+```
 
 Create base directories and setup:
 ```
-mkdir -p /home/pi/observations /home/pi/www
-apt-get install nginx-light
+mkdir -p /home/pi/observations
+apt install nginx-light
 cp nginx-sites-temperature /etc/nginx/sites-available/temperature
 # ... and remove the default site, link the "temperature" site, reload nginx
 ```
