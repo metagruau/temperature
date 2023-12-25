@@ -1,6 +1,6 @@
 #!/bin/sh
 
-if [ -z "$1" ]; then
+if [ -z "$1" -o -z "$2" ]; then
     echo "usage: $0 <FILE1> <YEAR>" >&2
     exit 1
 fi
