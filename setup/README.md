@@ -21,3 +21,6 @@ Launch tmux and run:
 * `./probe-dht.sh`
 * `./probe-msc.sh`
 * `./regenerate-graphs.sh`
+
+*or* copy the systemd unit files to /etc/systemd/system and start and enable
+them.

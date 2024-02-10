@@ -1,0 +1,9 @@
+[Service]
+Type=simple
+ExecStart=/home/pi/probe-dht.sh
+Environment=PATH=/home/pi/.local/bin:/home/pi/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+WorkingDirectory=/home/pi
+User=pi
+
+[Install]
+WantedBy=multi-user.target
