@@ -1,62 +1,49 @@
 # temperature
 
-Get inside and outside temperature. Store it. Make the current temperature and
-some historical data available through a very simple web page.
+Get inside and outside temperature. Store it. Display it.
 
-This is very, very basic.
+## History
 
-## read-temp-dht22.py
+### v2
 
-Python program to read temperature/humidity from a DHT22 sensor.
+V2 (current) is based on Grafana to display the data, and PostgreSQL to store
+it. The sensors can send their data remotely, although it's currently based on
+a "trusted sensors" approach, meaning the sensors are connecting directly to
+postgres and can insert data for any source.
+
+Ideally this would be wrapped around an HTTP API but there wasn't quite a need
+for it yet.
+
+### v1
+
+V1 was the original approach based on Gnuplot and a simple text file format.
+There was no support for remote sensors. Check the git history to view it.
+
+## Programs
+
+All the `read-*` programs share common options for storage and core, plus some
+probe-specific options.
+
+You have to `export PYTHONPATH=./src` to launch them from this directory.
+
+### read-temp-dht22.py
+
+Read temperature/humidity from a DHT22 sensor.
 
 Dependencies:
 * adafruit-circuitpython-dht (`pip install adafruit-circuitpython-dht`)
-  * libgpiod2 (on Debian: `apt-get install libgpiod2`)
+  * libgpiod2 (on Debian: `apt install libgpiod2`)
 
-Example:
-```
-read-temp-dht22.py --interval 600 --pin D4
-```
+### read-temp-msc.py
 
-## read-temp-msc
-
-Go program to read temperature/humidity from [Meteorological Service of Canada
+Read temperature/humidity from [Meteorological Service of Canada
 Datamart](https://eccc-msc.github.io/open-data/readme_en/)
 
-To cross-compile for a Raspberry Pi 1:
-```
-GOARCH=arm GOARM=6 GOOS=linux go build read-temp-msc.go
-```
+### read-temp-ds18b20.py
 
-Example:
-```
-read-temp-msc
-```
+Read temperature from a DS18B20 sensor. Requires kernel with w1\_therm driver.
 
-## extract-data.py
+### read-temp-stub.py
 
-Python program to filter observations.
-
-Example to output only observations for the day of 2021-08-02:
-```
-extract-data.py --date-min 20210802T0000 --date-max 20210803T0000 < observations.txt
-```
-
-## plot-\*.sh
-
-Shell scripts to generate SVG images from observations.
-
-Dependencies:
-* gnuplot (on Debian: `apt-get install gnuplot-nox`)
-
-Example to graph the last day of observations:
-```
-plot-simple-temperature.sh inside.txt outside.txt > temperature.svg
-```
-
-Example to graph the last week of observations, where the observation data
-for the week needs to be transformed a bit first:
-```
-map-to-daily-data-set.awk < weekly-inside.txt > weekly-data-set.txt
-plot-7days-temperature.sh weekly-data-set.txt "Example label"
-```
+Generate fake temperature and humidity, useful for development to test the core
+and storage and display.
